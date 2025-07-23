@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
 
-class CurrencyConverterMaterial extends StatefulWidget{
+class CurrencyConverterMaterial extends StatefulWidget {
   const CurrencyConverterMaterial({super.key});
 
   @override
-  State<CurrencyConverterMaterial>createState()=>
-       _CurrencyConverterMaterial();
+  State<CurrencyConverterMaterial> createState() =>
+      _CurrencyConverterMaterial();
 }
 
-class _CurrencyConverterMaterial extends State<CurrencyConverterMaterial>{
-  double result=0;
-  String money='BDT';
-  final TextEditingController textEditingController= TextEditingController();
+class _CurrencyConverterMaterial extends State<CurrencyConverterMaterial> {
+  double result = 0;
+  String money = 'BDT';
+  final TextEditingController textEditingController = TextEditingController();
   @override
-  Widget build (BuildContext context){
-    
+  Widget build(BuildContext context) {
     final border = OutlineInputBorder(
-      borderSide: const BorderSide(width: 2.0, style: BorderStyle.solid, color: Color.fromRGBO(3, 38, 57, 1)),
+      borderSide: const BorderSide(
+        width: 2.0,
+        style: BorderStyle.solid,
+        color: Color.fromRGBO(3, 38, 57, 1),
+      ),
       borderRadius: BorderRadius.all(Radius.circular(10)),
     );
 
-    final borderTwo= OutlineInputBorder(
+    final borderTwo = OutlineInputBorder(
       borderSide: const BorderSide(width: 3.0, style: BorderStyle.solid),
       borderRadius: BorderRadius.all(Radius.circular(10)),
     );
@@ -36,31 +39,27 @@ class _CurrencyConverterMaterial extends State<CurrencyConverterMaterial>{
             fontSize: 25,
             fontWeight: FontWeight.bold,
             color: Colors.white,
-          
           ),
         ),
         toolbarHeight: 80,
         centerTitle: true,
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-             Padding(
-               padding: const EdgeInsets.all(10.0),
-               child: Text(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
                 'The amount in $money is : $result',
-                textAlign:TextAlign.center,
-                style:const TextStyle(
+                textAlign: TextAlign.center,
+                style: const TextStyle(
                   color: Color.fromRGBO(255, 255, 255, 1),
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                 ),
-                           ),
-             ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: TextField(
+              ),
+              TextField(
                 controller: textEditingController,
                 style: const TextStyle(color: Colors.black),
                 decoration: InputDecoration(
@@ -77,104 +76,84 @@ class _CurrencyConverterMaterial extends State<CurrencyConverterMaterial>{
                   decimal: true,
                 ),
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children:[
-              Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 10.0,
-                vertical: 10.0,
+              const SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        result =
+                            double.parse(textEditingController.text) * 0.0082;
+                        money = 'USD';
+                      });
+                    },
+
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      foregroundColor: Colors.white,
+                      maximumSize: Size(double.infinity, 50),
+
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                    ),
+
+                    child: const Text('USD'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        result =
+                            double.parse(textEditingController.text) * 0.0061;
+                        money = 'POUND';
+                      });
+                    },
+
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      foregroundColor: Colors.white,
+                      maximumSize: Size(double.infinity, 50),
+
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                    ),
+
+                    child: const Text('Pound'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        result =
+                            double.parse(textEditingController.text) * 0.0071;
+                        money = 'EURO';
+                      });
+                    },
+
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      foregroundColor: Colors.white,
+                      maximumSize: Size(double.infinity, 50),
+
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                    ),
+
+                    child: const Text('Euro'),
+                  ),
+                ],
               ),
-              child: ElevatedButton(
+              const SizedBox(height: 10),
+              ElevatedButton(
                 onPressed: () {
                   setState(() {
-                    result=double.parse(textEditingController.text)*0.0082;
-                    money='USD';
+                    result = 0.0;
+                    textEditingController.text = '';
+                    money = 'BDT';
                   });
-                  
-                }, 
-              
-
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
-                  foregroundColor: Colors.white,
-                  maximumSize: Size(double.infinity, 50),
-
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                  ),
-                ),
-
-                child: const Text('USD'),
-              ),
-            ),
-              Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 10.0,
-                vertical: 10.0,
-              ),
-              child: ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    result=double.parse(textEditingController.text)*0.0061;
-                    money='POUND';
-                  });
-                  
-                }, 
-
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
-                  foregroundColor: Colors.white,
-                  maximumSize: Size(double.infinity, 50),
-
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                  ),
-                ),
-
-                child: const Text('Pound'),
-              ),
-            ),
-              Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 10.0,
-                vertical: 10.0,
-              ),
-              child: ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    result=double.parse(textEditingController.text)*0.0071;
-                    money='EURO';
-                  });
-                  
-                }, 
-
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
-                  foregroundColor: Colors.white,
-                  maximumSize: Size(double.infinity, 50),
-
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                  ),
-                ),
-
-                child: const Text('Euro'),
-              ),
-            ),
-            ],
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: ElevatedButton(
-                onPressed: (){
-                  setState(() {
-                    result=0.0;
-                    textEditingController.text='';
-                    money='BDT';
-                  });
-                }, 
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.black,
                   foregroundColor: Colors.white,
@@ -184,15 +163,12 @@ class _CurrencyConverterMaterial extends State<CurrencyConverterMaterial>{
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
                 ),
-                child:const Text(
-                  'Refresh'
-                  )
-                ),
-            ),
-          ],
+                child: const Text('Refresh'),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
-
