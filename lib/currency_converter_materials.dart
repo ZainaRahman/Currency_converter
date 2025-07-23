@@ -51,7 +51,7 @@ class _CurrencyConverterMaterial extends State<CurrencyConverterMaterial> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'The amount in $money is : $result',
+                'The amount in $money is : ${result != 0 ? result.toStringAsFixed(3) : result.toStringAsFixed(1)}',
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Color.fromRGBO(255, 255, 255, 1),
@@ -59,6 +59,7 @@ class _CurrencyConverterMaterial extends State<CurrencyConverterMaterial> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              SizedBox(height: 10),
               TextField(
                 controller: textEditingController,
                 style: const TextStyle(color: Colors.black),
@@ -80,68 +81,77 @@ class _CurrencyConverterMaterial extends State<CurrencyConverterMaterial> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        result =
-                            double.parse(textEditingController.text) * 0.0082;
-                        money = 'USD';
-                      });
-                    },
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          result =
+                              double.parse(textEditingController.text) * 0.0082;
+                          money = 'USD';
+                        });
+                      },
 
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
-                      foregroundColor: Colors.white,
-                      maximumSize: Size(double.infinity, 50),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        foregroundColor: Colors.white,
+                        maximumSize: Size(double.infinity, 50),
 
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
                       ),
-                    ),
 
-                    child: const Text('USD'),
+                      child: const Text('USD'),
+                    ),
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        result =
-                            double.parse(textEditingController.text) * 0.0061;
-                        money = 'POUND';
-                      });
-                    },
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          result =
+                              double.parse(textEditingController.text) * 0.0061;
+                          money = 'POUND';
+                        });
+                      },
 
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
-                      foregroundColor: Colors.white,
-                      maximumSize: Size(double.infinity, 50),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        foregroundColor: Colors.white,
+                        maximumSize: Size(double.infinity, 50),
 
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
                       ),
-                    ),
 
-                    child: const Text('Pound'),
+                      child: const Text('Pound'),
+                    ),
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        result =
-                            double.parse(textEditingController.text) * 0.0071;
-                        money = 'EURO';
-                      });
-                    },
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          result =
+                              double.parse(textEditingController.text) * 0.0071;
+                          money = 'EURO';
+                        });
+                      },
 
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
-                      foregroundColor: Colors.white,
-                      maximumSize: Size(double.infinity, 50),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        foregroundColor: Colors.white,
+                        maximumSize: Size(double.infinity, 50),
 
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
                       ),
-                    ),
 
-                    child: const Text('Euro'),
+                      child: const Text('Euro'),
+                    ),
                   ),
                 ],
               ),
